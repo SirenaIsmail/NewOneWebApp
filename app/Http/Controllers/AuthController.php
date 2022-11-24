@@ -18,68 +18,59 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
+        $this->validate($request, [
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+            'email' => 'required|email',
+            'password' => 'required',
+
+        ]);
+
+        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            throw new AuthenticationException();
         }
-//        $token = $this->createNewToken($token);
+        else {
 
-        $user = Auth::user();
-        return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+         $user=auth()->user();
+         return[
+                'message'=>'you are login successfully',
 
+                'token' => auth()->user()->createToken('')->plainTextToken,
+         ];
+
+        }
     }
 
 
-    public function register(Request $request)
+    // public function register(Request $request)
+    // {
+
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //     ]);
+
+    //     $token = Auth::attempt($request->only(['email', 'password']));
+
+
+
+    //         return response()->json([
+    //             'message' => 'User created successfully',
+    //             'token' => auth()->user()->createToken('')->plainTextToken,
+    //             'user' => $user,
+
+    //             ]
+    //         );
+    // }
+
+
+
+
+    public function logout(Request $request): string
     {
+        auth()->user()->tokens()->delete();
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $token = Auth::attempt($request->only(['email', 'password']));
-
-        if ($token) {
-            return response()->json([
-                'status' => 'success',
-                'message' => 'User created successfully',
-                'user' => $user,
-                'authorisation' => [
-                    'token' => $token,
-                    'type' => 'bearer',
-                ]
-            ]);
-           }
-    }
-
-
-
-
-    public function logout()
-    {
-        Auth::logout();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully logged out',
-        ]);
+        return 'tokens are deleted';
     }
 
     public function refresh()
