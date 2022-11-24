@@ -41,27 +41,27 @@ class AuthController extends Controller
     }
 
 
-    // public function register(Request $request)
-    // {
+    public function register(Request $request)
+    {
 
-    //     $user = User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //     ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-    //     $token = Auth::attempt($request->only(['email', 'password']));
+        $token = Auth::attempt($request->only(['email', 'password']));
 
 
 
-    //         return response()->json([
-    //             'message' => 'User created successfully',
-    //             'token' => auth()->user()->createToken('')->plainTextToken,
-    //             'user' => $user,
+            return response()->json([
+                'message' => 'User created successfully',
+                'token' => auth()->user()->createToken('')->plainTextToken,
+                'user' => $user,
 
-    //             ]
-    //         );
-    // }
+                ]
+            );
+    }
 
 
 

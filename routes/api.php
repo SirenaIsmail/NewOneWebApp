@@ -18,7 +18,7 @@ use App\Http\Controllers\AuthController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-// Route::post('/register','App\Http\Controllers\Api\AuthController@register');
+Route::post('/register','App\Http\Controllers\AuthController@register');
 
 // Route::controller(App\Http\Controllers\AuthController::class)->group(function () {
 //     Route::post('login', 'login');
@@ -27,11 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     Route::post('refresh', 'refresh');
 
 // });
-Route::post('/login','App\Http\Controllers\Api\AuthController@login');
+Route::post('/login','App\Http\Controllers\AuthController@login');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::delete('/logout','App\Http\Controllers\Api\AuthController@logout')->middleware('auth:sanctum');
+Route::delete('/logout','App\Http\Controllers\AuthController@logout')->middleware('auth:sanctum');
 
 ///////////////////////////////////
 Route::get('/test-online', function () {
