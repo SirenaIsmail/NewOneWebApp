@@ -13,17 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('path');
-            $table->boolean('status');
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('file_id')
+                ->constrained('files')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 //            $table->unsignedInteger('user_id');
 //            $table->foreign('user_id')->references('id')->on('users');
+//            $table->unsignedInteger('file_id');
+//            $table->foreign('file_id')->references('id')->on('files');
             $table->timestamps();
         });
     }
@@ -35,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('groups');
     }
 };

@@ -5,23 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class Group extends Model
 {
     use HasFactory;
-    protected $fillable =[
-        'name',
-        'path',
-        'user_id',
-    ];
 
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function groups(){
-        return $this->hasMany(Group::class,'file_id' , 'id');
+    public function files()
+    {
+        return $this->belongsTo(File::class, 'filez_id');
     }
-
-
 }
