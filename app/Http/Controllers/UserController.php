@@ -40,17 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $validator = Validator::make($input,[
-           'name'=> 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        $user = User::create($input);
-        return response()->json([
-            "message" => "user added successfully",
-            "Data" => $user,
-        ]);
+        //
     }
 
     /**
@@ -90,21 +80,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-        $user = User::find($id);
-        $user->name = $input['name'];
-        $user->email = $input['email'];
-        $user->password = $input['password'];
-        $user->save();
-        return response()->json([
-            "message" => "user updated successfully.",
-            "data" => $user
-        ]);
+        //
     }
 
     /**

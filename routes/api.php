@@ -37,6 +37,21 @@ Route::delete('/logout','App\Http\Controllers\AuthController@logout')->middlewar
 Route::get('/test-online', function () {
     dd('i am online ^_^');
 });
-// Route::post('/login',[AuthController::class,'login']);
-// Route::post('/logout',[AuthController::class,'logout']);
-    // Route::post('logout', 'logout');
+
+
+    Route::get('/user_index', 'App\Http\Controllers\UserController@index');
+    Route::get('/user_show/{id}', 'App\Http\Controllers\UserController@show');
+    Route::get('/user_delete/{id}', 'App\Http\Controllers\UserController@destroy');
+
+    Route::get('/file_index', 'App\Http\Controllers\FileController@index');
+    Route::post('/file_store', 'App\Http\Controllers\FileController@store');
+    Route::get('/file_show/{id}', 'App\Http\Controllers\FileController@show');
+    Route::get('/file_update/{id}', 'App\Http\Controllers\FileController@update');
+    Route::get('/file_delete/{id}', 'App\Http\Controllers\FileController@destroy');
+
+
+    Route::get('/group_index', 'App\Http\Controllers\GroupController@index');
+    Route::post('/group_store', 'App\Http\Controllers\GroupController@store');
+    Route::get('/group_show/{id}', 'App\Http\Controllers\GroupController@show');
+    Route::get('/group_update/{id}', 'App\Http\Controllers\GroupController@update');
+    Route::get('/group_delete/{id}', 'App\Http\Controllers\GroupController@destroy');
