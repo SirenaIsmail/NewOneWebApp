@@ -8,37 +8,58 @@ use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function index()
     {
         $files = File::all();
         return response()->json([
-           "message" => "Files list",
-           "Data" => $files,
+            "message" => "Files list",
+            "Data" => $files,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request){
+        $imageName = $request->file->getClientOriginalName();
+        $request->file->move(public_path('Files/'), $imageName);
+        //$id=Auth::id();
+        //$user=User::find(Auth::user()->id);
+        $File=new File([
+            "name"=>$request->name,
+            "path"=>$imageName,
+            "status"=>$request->status,
+            "user_id"=>1,
+        ]);
+        $File->save();
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function getDownload()
+    {
+        //$file->getPath()
+       // $path = public_path('app/Files' . $file->path);
+        $headers = array(
+            'Content-Type: application/png',
+        );
+        return response()->download(public_path('Files/Screenshot (5).png'));
+      //  return response()->download($path, $file->name, $headers);
+    }
+
+
+
+    public function show1($id)
+    {
+        $file = File::find($id);
+        if ($file == null)
+            return response()->json(["message" => "File not found"]);
+        else
+            return response()->json([
+                "Data" => $file,
+            ]);
+    }
+
+    public function store2(Request $request)
     {
         $input = $request->all();
         $validator = Validator::make($input,[
@@ -54,41 +75,7 @@ class FileController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $file = File::find($id);
-        if ($file == null)
-            return response()->json(["message" => "File not found"]);
-        else
-            return response()->json([
-                "Data" => $file,
-            ]);
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $input = $request->all();
@@ -110,12 +97,6 @@ class FileController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $file = File::find($id);
@@ -124,4 +105,5 @@ class FileController extends Controller
             "message" => "file deleted",
         ]);
     }
+
 }

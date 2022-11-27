@@ -12,6 +12,7 @@ class File extends Model
         'name',
         'path',
         'user_id',
+        'status'
     ];
 
     public function users()

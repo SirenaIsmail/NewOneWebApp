@@ -33,18 +33,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::delete('/logout','App\Http\Controllers\AuthController@logout')->middleware('auth:sanctum');
 
-///////////////////////////////////
-Route::get('/test-online', function () {
-    dd('i am online ^_^');
-});
 
-
+//done
     Route::get('/user_index', 'App\Http\Controllers\UserController@index');
     Route::get('/user_show/{id}', 'App\Http\Controllers\UserController@show');
     Route::get('/user_delete/{id}', 'App\Http\Controllers\UserController@destroy');
 
     Route::get('/file_index', 'App\Http\Controllers\FileController@index');
     Route::post('/file_store', 'App\Http\Controllers\FileController@store');
+    Route::get('/file_download', 'App\Http\Controllers\FileController@getDownload');
+
+
+
+
+
+
+
+    Route::post('/file_store2', 'App\Http\Controllers\FileController@store2');
     Route::get('/file_show/{id}', 'App\Http\Controllers\FileController@show');
     Route::get('/file_update/{id}', 'App\Http\Controllers\FileController@update');
     Route::get('/file_delete/{id}', 'App\Http\Controllers\FileController@destroy');

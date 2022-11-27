@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GroupController extends Controller
 {
@@ -98,6 +99,7 @@ class GroupController extends Controller
             'user_id' => 'required',
             'file_id' => 'required'
         ]);
+
         $group = Group::find($id);
         $group->name = $input['name'];
         $group->user_id = $input['user_id'];
