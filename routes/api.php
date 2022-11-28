@@ -35,24 +35,28 @@ Route::delete('/logout','App\Http\Controllers\AuthController@logout')->middlewar
 
 
 //done
+Route::middleware('auth:sanctum')->group(function (){
+    //users
     Route::get('/user_index', 'App\Http\Controllers\UserController@index');
     Route::get('/user_show/{id}', 'App\Http\Controllers\UserController@show');
     Route::get('/user_delete/{id}', 'App\Http\Controllers\UserController@destroy');
 
+    //files
     Route::get('/file_index', 'App\Http\Controllers\FileController@index');
     Route::post('/file_store', 'App\Http\Controllers\FileController@store');
     Route::get('/file_download', 'App\Http\Controllers\FileController@getDownload');
+    Route::get('/file_show/{id}', 'App\Http\Controllers\FileController@show');
+    Route::get('/file_delete/{id}', 'App\Http\Controllers\FileController@destroy');
 
-
+});
 
 
 
 
 
     Route::post('/file_store2', 'App\Http\Controllers\FileController@store2');
-    Route::get('/file_show/{id}', 'App\Http\Controllers\FileController@show');
     Route::get('/file_update/{id}', 'App\Http\Controllers\FileController@update');
-    Route::get('/file_delete/{id}', 'App\Http\Controllers\FileController@destroy');
+   
 
 
     Route::get('/group_index', 'App\Http\Controllers\GroupController@index');
