@@ -64,7 +64,6 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('/add_Member', 'App\Http\Controllers\MemberController@store');
 
 
-
     Route::post('/add_GroupFile', 'App\Http\Controllers\GroupFileController@store');
 
 });

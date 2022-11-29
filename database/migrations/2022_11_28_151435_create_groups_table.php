@@ -20,10 +20,7 @@ return new class extends Migration
                             ->constrained('users')
                             ->onUpdate('cascade')
                             ->onDelete('cascade');
-             ////           $table->foreignId('file_id')
-                 //           ->constrained('files')
-                   //         ->onUpdate('cascade')
-                     //       ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Group_file extends Model
 {
     use HasFactory;
+
     protected $fillable =[
 
         'group_id',

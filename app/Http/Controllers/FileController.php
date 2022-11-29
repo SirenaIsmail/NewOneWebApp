@@ -53,8 +53,7 @@ class FileController extends Controller
         if ($file->status == 1) {
             $file->status = 0;
             $file->save();
-        }
-        else{
+        } else{
             return response()->json([
                 "message" => "checkIn failed.",
             ]);
