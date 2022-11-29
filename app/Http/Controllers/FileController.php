@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use App\Models\log;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,55 @@ class FileController extends Controller
         return response()->download(public_path('Files/Screenshot (5).png'));
       //  return response()->download($path, $file->name, $headers);
     }
+
+
+    public function checkIn($id){
+        $file = File::find($id);
+        if ($file->status == 1) {
+            $file->status = 0;
+            $file->save();
+        }
+        else{
+            return response()->json([
+                "message" => "checkIn failed.",
+            ]);
+        }
+        $log=new log([
+            "file_id"=>$file->id,
+            "user_id"=>$file->user_id,
+            "check_state"=>$file->status,
+        ]);
+        $log->save();
+        return response()->json([
+            "message" => "checkIn successfully.",
+            "data" => $file
+        ]);
+    }
+
+    public function checkOut($id){
+        $file = File::find($id);
+        if ($file->status == 0) {
+            $file->status = 1;
+            $file->save();
+        }
+        else{
+            return response()->json([
+                "message" => "checkIn failed.",
+            ]);
+        }
+        $log=new log([
+            "file_id"=>$file->id,
+            "user_id"=>$file->user_id,
+            "check_state"=>$file->status,
+        ]);
+        $log->save();
+        return response()->json([
+            "message" => "checkOut successfully.",
+
+        ]);
+    }
+
+
 
 
 
@@ -105,5 +155,7 @@ class FileController extends Controller
             "message" => "file deleted",
         ]);
     }
+
+
 
 }

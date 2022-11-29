@@ -44,11 +44,11 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $validator = Validator::make($input,[
-            'name' => 'required',
-            'user_id' => 'required',
-            'file_id' => 'required'
-        ]);
+//        $validator = Validator::make($input,[
+//            'name' => 'required',
+//            'user_id' => 'required',
+//            'file_id' => 'required'
+//        ]);
         $group = Group::create($input);
         return response()->json([
             "message" => "group created successfully",
@@ -56,12 +56,6 @@ class GroupController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $group = Group::find($id);

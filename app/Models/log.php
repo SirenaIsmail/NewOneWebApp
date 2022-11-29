@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+    class log extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'name',
+
+        'file_id',
         'user_id',
-        'file_id'
+        'check_state'
     ];
 }

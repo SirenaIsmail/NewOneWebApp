@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Group_User extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'name',
-        'user_id',
-        'file_id'
+
+        'group_id',
+        'user_id'
+
     ];
 }

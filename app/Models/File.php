@@ -25,4 +25,27 @@ class File extends Model
     }
 
 
+
+
+
+
+
+
+
+
+
+    ///// group
+    ///  public function users()
+    ////    {
+    ////        return $this->belongsTo(User::class, 'user_id');
+    ////    }
+    ////
+    ////    public function files()
+    ////    {
+    ////        return $this->belongsTo(File::class, 'filez_id');
+    ////    }
+    ///
+    ///
+    ///
+    ///
 }

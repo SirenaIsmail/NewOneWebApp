@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('group__users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('path');
-            $table->boolean('status')->default(true);
+            $table->foreignId('group_id')
+                ->constrained('groups')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onUpdate('cascade')
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('group__users');
     }
 };
