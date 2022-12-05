@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,10 +39,7 @@ Route::delete('/logout','App\Http\Controllers\AuthController@logout')->middlewar
 
 //done
 Route::middleware('auth:sanctum')->group(function (){
-<<<<<<< HEAD
 
-=======
->>>>>>> 8449e18dbeb9174e58ea10e9a052cfc9ea4d1369
     //users
     Route::get('/user_index', 'App\Http\Controllers\UserController@index');
     Route::get('/user_show/{id}', 'App\Http\Controllers\UserController@show');
@@ -53,7 +51,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('/file_download', 'App\Http\Controllers\FileController@getDownload');
     Route::get('/file_show/{id}', 'App\Http\Controllers\FileController@show');
     Route::get('/file_delete/{id}', 'App\Http\Controllers\FileController@destroy');
-<<<<<<< HEAD
+
     Route::put('/checkIn/{id}', 'App\Http\Controllers\FileController@checkIn');
     Route::put('/checkOut/{id}', 'App\Http\Controllers\FileController@checkOut');
 
@@ -72,21 +70,28 @@ Route::middleware('auth:sanctum')->group(function (){
 
 });
 
-=======
 
-});
->>>>>>> 8449e18dbeb9174e58ea10e9a052cfc9ea4d1369
-
+//Route::get("log-message", function () {
+//
+//    $message = "This is a sample message for Test.";
+//
+//    Log::emergency($message);
+//    Log::alert($message);
+//    Log::critical($message);
+//    Log::error($message);
+//    Log::warning($message);
+//    Log::notice($message);
+//    Log::info($message);
+//    Log::debug($message);
+//});
 
 
 
 
     Route::post('/file_store2', 'App\Http\Controllers\FileController@store2');
     Route::get('/file_update/{id}', 'App\Http\Controllers\FileController@update');
-<<<<<<< HEAD
-=======
-   
->>>>>>> 8449e18dbeb9174e58ea10e9a052cfc9ea4d1369
+
+
 
 
     Route::get('/group_update/{id}', 'App\Http\Controllers\GroupController@update');

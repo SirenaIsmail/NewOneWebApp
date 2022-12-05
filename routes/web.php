@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +34,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get("log-message", function () {
+
+    $message = "This is a sample message for Test.";
+
+    Log::emergency($message);
+    Log::alert($message);
+    Log::critical($message);
+    Log::error($message);
+    Log::warning($message);
+    Log::notice($message);
+    Log::info($message);
+    Log::debug($message);
+});
