@@ -36,7 +36,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get("log-message", function () {
+/*Route::get("log-message", function () {
 
     $message = "This is a sample message for Test.";
 
@@ -48,4 +48,4 @@ Route::get("log-message", function () {
     Log::notice($message);
     Log::info($message);
     Log::debug($message);
-});
+});*/
